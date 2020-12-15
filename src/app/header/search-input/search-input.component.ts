@@ -12,4 +12,9 @@ export class SearchInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showResults() {
+    const div = document.querySelector('.results');
+    div.classList.add('show');
+  }
+
 }

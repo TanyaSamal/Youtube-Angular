@@ -1,4 +1,4 @@
 <mat-form-field class="search-input">
-    <input matInput>
-    <button mat-raised-button color="primary" type="submit">Search</button>
+    <input matInput (keyup.enter)="showResults()">
 </mat-form-field>
+<button mat-raised-button color="primary" type="submit" (click)="showResults()">Search</button>

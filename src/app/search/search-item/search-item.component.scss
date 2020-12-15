@@ -1,0 +1,56 @@
+.card {
+    display: grid;
+    height: 327px;
+    width: 270px;
+    margin-top: 30px;
+    background: #E5E5E5;
+    border-radius: 5px;
+    border-bottom: 5px solid blue;
+
+    img {
+        display: block;
+        width: 223px;
+        height: 123px;
+        margin: 20px;
+    }
+
+    .socials {
+        margin: 0 30px;
+
+        div {
+            float: left;
+            margin-right: 10px;
+
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 10px;
+            line-height: 12px;
+
+            .material-icons {
+                font-size: 18px;
+            }
+        }
+
+        .comments {
+            margin-right: 0;
+        }
+    }
+
+    p {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 23px;
+        text-align: center;
+
+        color: #4F4F4F;
+    }
+
+    button {
+        margin: auto;
+        width: 120px;
+        height: 32px;
+    }
+}

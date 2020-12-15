@@ -1,0 +1,37 @@
+.filter {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+
+    background: #E5E5E5;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #929292;
+
+    div {
+        margin-right: 20px;
+    }
+
+    .sort {
+        text-decoration-line: underline;
+        color: #2F80ED;
+    }
+
+    label {
+        margin-right: 10px;
+        color: #2F80ED;
+    }
+
+    mat-form-field {
+        width: 150px;
+    }
+}
+
+.visible {
+    display: none;
+}
