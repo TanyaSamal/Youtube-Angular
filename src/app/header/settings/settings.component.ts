@@ -12,8 +12,4 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleFilter() {
-    document.querySelector('.filter').classList.toggle('visible');
-  }
-
 }

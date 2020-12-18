@@ -1,5 +1,5 @@
 .filter {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: baseline;
 
@@ -33,5 +33,5 @@
 }
 
 .visible {
-    display: none;
+    display: flex;
 }

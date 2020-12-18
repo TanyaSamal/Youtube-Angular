@@ -4,6 +4,7 @@ import { SearchInputComponent } from './search-input/search-input.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginInfoComponent } from './login-info/login-info.component';
 import { MaterialModule } from '../material.module';
+import { ToggleDirective } from './directives/toggle.directive';
 
 @NgModule ({
     imports: [
@@ -13,12 +14,13 @@ import { MaterialModule } from '../material.module';
     exports: [
         SearchInputComponent,
         SettingsComponent,
-        LoginInfoComponent 
+        LoginInfoComponent
     ],
     declarations: [
         SearchInputComponent, 
         SettingsComponent, 
-        LoginInfoComponent
+        LoginInfoComponent,
+        ToggleDirective
     ]
 })
 
