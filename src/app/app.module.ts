@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
@@ -9,10 +10,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
-import { SearchItemComponent } from './search/search-item/search-item.component';
 import { FilterComponent } from './filter/filter.component';
 import { HeaderModule } from './header/header.module';
+import { ItemsService } from './shared/services/items.service';
+import { SearchModule } from './search/search.module';
 
 @NgModule({
   declarations: [
@@ -22,17 +23,19 @@ import { HeaderModule } from './header/header.module';
     RegistrationComponent,
     HeaderComponent,
     SearchComponent,
-    SearchResultsComponent,
-    SearchItemComponent,
     FilterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HeaderModule
+    HttpClientModule,
+    HeaderModule,
+    SearchModule
   ],
-  providers: [],
+  providers: [
+    ItemsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,19 +1,19 @@
 <div class="card">
-    <img src="">
+    <img src="{{ item.snippet.thumbnails.default.url }}">
     <div class="socials">
         <div class="views">
-            <mat-icon md-18>visibility</mat-icon> 1000
+            <mat-icon md-18>visibility</mat-icon> {{ item.statistics.viewCount }}
         </div>
         <div class="like">
-            <mat-icon md-18>thumb_up_at</mat-icon> 680
+            <mat-icon md-18>thumb_up_at</mat-icon> {{ item.statistics.likeCount }}
         </div>
         <div class="dislike">
-            <mat-icon md-18>thumb_down_at</mat-icon> 320
+            <mat-icon md-18>thumb_down_at</mat-icon> {{ item.statistics.dislikeCount }}
         </div>
         <div class="comments">
-            <mat-icon md-18>comments</mat-icon> 250
+            <mat-icon md-18>comments</mat-icon> {{ item.statistics.commentCount }}
         </div>
     </div>
-    <p>Podcast name</p>
+    <p>{{ item.snippet.title }}</p>
     <button mat-raised-button color="primary">More...</button>
 </div>
