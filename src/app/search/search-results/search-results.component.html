@@ -1,3 +1,4 @@
 <div class="results">
-    <ts-search-item [response]="response.items[0]"></ts-search-item>
+    <ts-search-item *ngFor="let i of response.items" [item]="i">
+    </ts-search-item>
 </div>

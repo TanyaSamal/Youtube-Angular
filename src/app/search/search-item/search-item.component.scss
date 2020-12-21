@@ -1,8 +1,9 @@
 .card {
     display: grid;
     height: 327px;
-    width: 270px;
+    width: 263px;
     margin-top: 30px;
+    margin-right: 30px;
     background: #E5E5E5;
     border-radius: 5px;
     border-bottom: 5px solid blue;
@@ -15,7 +16,9 @@
     }
 
     .socials {
-        margin: 0 30px;
+        margin: 0 20px;
+        display: flex;
+        justify-content: space-between;
 
         div {
             float: left;
@@ -29,6 +32,8 @@
 
             .material-icons {
                 font-size: 18px;
+                height: 18px;
+                width: 18px;
             }
         }
 
@@ -44,12 +49,13 @@
         font-size: 20px;
         line-height: 23px;
         text-align: center;
-
+        margin: 22px;
+        overflow: hidden;
         color: #4F4F4F;
     }
 
     button {
-        margin: auto;
+        margin: 10px auto;
         width: 120px;
         height: 32px;
     }

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ISearchResponse } from '../../shared/models/search-response.model';
 import { ISearchItem} from '../../shared/models/search-item.model';
 
 @Component({
@@ -9,7 +8,7 @@ import { ISearchItem} from '../../shared/models/search-item.model';
 })
 export class SearchItemComponent implements OnInit {
 
-  @Input('response') item: ISearchItem;
+  @Input() item: ISearchItem;
 
   constructor() { }
 

@@ -1,9 +1,12 @@
 .results {
-    width: 80%;
+    width: 87%;
     margin: 0 auto;
+    padding-bottom: 30px;
     display: none;
 }
 
 .show {
-    display: block;
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
 }
