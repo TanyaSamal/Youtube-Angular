@@ -14,7 +14,6 @@ import { FilterComponent } from './filter/filter.component';
 import { HeaderModule } from './header/header.module';
 import { ItemsService } from './shared/services/items.service';
 import { SearchModule } from './search/search.module';
-
 @NgModule({
   declarations: [
     AppComponent,

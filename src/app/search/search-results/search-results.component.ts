@@ -20,9 +20,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.sub = this.itemService.getResponse()
     .subscribe((data: ISearchResponse) => {
       this.response = { ...data }
-      console.log(this.response.items);
-      
-    });
+  });
   }
 
   ngOnDestroy() {
