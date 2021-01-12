@@ -5,31 +5,32 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
+
 export class FilterComponent implements OnInit{
 
-  @Output() filterByDate = new EventEmitter<any>();
-  @Output() filterByViews = new EventEmitter<any>();
-  @Output() filterByWord = new EventEmitter<any>();
+  @Output() public filterByDate: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public filterByViews: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public filterByWord: EventEmitter<any> = new EventEmitter<any>();
 
-  inputWord: string;
+  public inputWord: string;
 
   constructor() { }
-  
-  ngOnInit() {}
 
-  sortByDate() {
+  public ngOnInit(): void {}
+
+  public sortByDate(): void {
     this.filterByDate.emit();
   }
 
-  sortByViews() {
+  public sortByViews(): void {
     this.filterByViews.emit();
   }
 
-  handleChangeWord(value) {
+  public handleChangeWord(value: string): void {
     this.inputWord = value;
   }
 
-  sortByWord() {
+  public sortByWord(): void {
     this.filterByWord.emit({
       word: this.inputWord
     });

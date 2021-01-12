@@ -8,7 +8,7 @@ import { ISearchItem} from '../../shared/models/search-item.model';
 })
 export class SearchItemComponent implements OnInit {
 
-  @Input() item: ISearchItem;
+  @Input() public item: ISearchItem;
 
   constructor() { }
 

@@ -7,13 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
     imports: [
-        MatButtonModule, 
+        MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
         MatIconModule
     ],
     exports: [
-        MatButtonModule, 
+        MatButtonModule,
         MatInputModule,
         MatFormFieldModule,
         MatIconModule

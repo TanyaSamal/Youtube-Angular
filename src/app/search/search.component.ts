@@ -12,22 +12,27 @@ import { SortByWordPipe } from '../shared/pipes/sortByWord.pipe';
   styleUrls: ['./search.component.scss'],
   providers: [SortByDatePipe, SortByViewsPipe, SortByWordPipe]
 })
-export class SearchComponent implements OnInit, OnDestroy{
+
+export class SearchComponent implements OnInit, OnDestroy {
 
   public response: ISearchResponse;
   public filteredResponse: ISearchResponse;
   public isFilterByDate: boolean = false;
   public isFilterByViews: boolean = false;
-  sub: Subscription;
+  public sub: Subscription;
 
   constructor(
     private itemService: ItemsService,
-    private sortByDatePipe: SortByDatePipe, 
+    private sortByDatePipe: SortByDatePipe,
     private sortByViewsPipe: SortByViewsPipe,
     private sortByWordPipe: SortByWordPipe
   ) { }
 
-  ngOnInit() {
+  private setOriginalResponse(): void {
+    this.filteredResponse = Object.assign({}, this.response);
+  }
+
+  public ngOnInit(): void {
     this.itemService.getResponse()
     .subscribe((data: ISearchResponse) => {
       this.response = { ...data };
@@ -35,28 +40,24 @@ export class SearchComponent implements OnInit, OnDestroy{
     });
   }
 
-  private setOriginalResponse() {
-    this.filteredResponse = Object.assign({}, this.response);
-  }
-
-  filterByDate() {
+  public filterByDate(): void {
     this.setOriginalResponse();
     this.isFilterByDate = !this.isFilterByDate;
     this.sortByDatePipe.transform(this.filteredResponse.items, this.isFilterByDate);
   }
 
-  filterByViews() {
+  public filterByViews(): void {
     this.setOriginalResponse();
     this.isFilterByViews = !this.isFilterByViews;
     this.sortByViewsPipe.transform(this.filteredResponse.items, this.isFilterByViews);
   }
 
-  filterByWord(filterWord) {
+  public filterByWord(filterWord: { word: string }): void {
     this.setOriginalResponse();
     this.filteredResponse.items = this.sortByWordPipe.transform(this.filteredResponse.items, filterWord.word);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     if (this.sub) {
       this.sub.unsubscribe();
     }

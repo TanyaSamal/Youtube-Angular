@@ -6,7 +6,7 @@ import { Directive, ElementRef, HostBinding, HostListener, OnInit } from '@angul
 
 export class ToggleDirective {
 
- @HostListener ('click') onClick() {
+ @HostListener ('click') public onClick(): void {
         document.querySelector('.filter').classList.toggle('visible');
     }
 }

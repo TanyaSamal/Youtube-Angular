@@ -17,8 +17,8 @@ import { ToggleDirective } from './directives/toggle.directive';
         LoginInfoComponent
     ],
     declarations: [
-        SearchInputComponent, 
-        SettingsComponent, 
+        SearchInputComponent,
+        SettingsComponent,
         LoginInfoComponent,
         ToggleDirective
     ]

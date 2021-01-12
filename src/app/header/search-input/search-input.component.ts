@@ -11,8 +11,8 @@ export class SearchInputComponent implements OnInit {
 
   public ngOnInit(): void {}
 
-  showResults() {
-    const div = document.querySelector('.results');
+  public showResults(): void {
+    const div: HTMLElement = document.querySelector('.results');
     div.classList.add('show');
   }
 
