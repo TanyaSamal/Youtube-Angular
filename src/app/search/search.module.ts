@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 import { SearchItemComponent } from './search-item/search-item.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MaterialModule } from '../material.module';
-import { SortByDatePipe } from './pipes/sortByDate.pipe';
-import { SortByViewsPipe } from './pipes/sortByViews.pipe';
-import { SortByWordPipe } from './pipes/sortByWord.pipe';
 import { ColorBorderDirective } from './directives/colorBorder.directive';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule ({
     imports: [
@@ -16,16 +14,12 @@ import { ColorBorderDirective } from './directives/colorBorder.directive';
     exports: [
         SearchResultsComponent,
         SearchItemComponent,
-        SortByDatePipe,
-        SortByViewsPipe,
-        SortByWordPipe
+        FilterComponent
     ],
     declarations: [
         SearchResultsComponent,
         SearchItemComponent,
-        SortByDatePipe,
-        SortByViewsPipe,
-        SortByWordPipe,
+        FilterComponent,
         ColorBorderDirective
     ]
 })

@@ -1,0 +1,14 @@
+<div class="filter" >
+    <div>Sorting by:</div>
+    <div class="sort" (click)="sortByDate()">date</div>
+    <div class="sort" (click)="sortByViews()">count of views</div>
+    <div>
+        <label>by word or sentance</label>
+        <mat-form-field class="word-filter">
+            <input 
+                matInput
+                (keyup.enter)="sortByWord()" 
+                (change)="handleChangeWord($event.target.value)">
+        </mat-form-field>
+    </div>
+</div>

@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ISearchResponse } from '../models/search-response.model';
 
-
 @Injectable()
 export class ItemsService {
 

@@ -1,26 +1,59 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemsService } from '../../shared/services/items.service';
 import { ISearchResponse } from '../../shared/models/search-response.model';
+import { Subscription } from 'rxjs';
+import { SortByDatePipe } from '../../shared/pipes/sortByDate.pipe';
+import { SortByViewsPipe } from '../../shared/pipes/sortByViews.pipe';
+import { SortByWordPipe } from '../../shared/pipes/sortByWord.pipe';
 
 @Component({
   selector: 'ts-search-results',
   templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.scss']
+  styleUrls: ['./search-results.component.scss'],
+  providers: [SortByDatePipe, SortByViewsPipe, SortByWordPipe]
 })
-export class SearchResultsComponent implements OnInit, OnDestroy {
+export class SearchResultsComponent implements OnInit, OnDestroy{
 
+  public response: ISearchResponse;
+  public filteredResponse: ISearchResponse;
+  public isFilterByDate: boolean = false;
+  public isFilterByViews: boolean = false;
   sub: Subscription;
-  response: ISearchResponse;
 
-  constructor(private itemService: ItemsService) { }
+  constructor(
+    private itemService: ItemsService,
+    private sortByDatePipe: SortByDatePipe, 
+    private sortByViewsPipe: SortByViewsPipe,
+    private sortByWordPipe: SortByWordPipe
+  ) { }
 
-  public ngOnInit(): void {
-    this.sub = this.itemService.getResponse()
+  ngOnInit() {
+    this.itemService.getResponse()
     .subscribe((data: ISearchResponse) => {
-      this.response = { ...data }
-  });
+      this.response = { ...data };
+      this.setOriginalResponse();
+    });
+  }
+
+  private setOriginalResponse() {
+    this.filteredResponse = Object.assign({}, this.response);
+  }
+
+  filterByDate() {
+    this.setOriginalResponse();
+    this.isFilterByDate = !this.isFilterByDate;
+    this.sortByDatePipe.transform(this.filteredResponse.items, this.isFilterByDate);
+  }
+
+  filterByViews() {
+    this.setOriginalResponse();
+    this.isFilterByViews = !this.isFilterByViews;
+    this.sortByViewsPipe.transform(this.filteredResponse.items, this.isFilterByViews);
+  }
+
+  filterByWord(filterWord) {
+    this.setOriginalResponse();
+    this.filteredResponse.items = this.sortByWordPipe.transform(this.filteredResponse.items, filterWord.word);
   }
 
   ngOnDestroy() {

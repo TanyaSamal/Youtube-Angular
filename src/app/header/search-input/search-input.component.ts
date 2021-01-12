@@ -9,8 +9,7 @@ export class SearchInputComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  public ngOnInit(): void {}
 
   showResults() {
     const div = document.querySelector('.results');

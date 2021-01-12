@@ -11,7 +11,7 @@ export class ColorBorderDirective implements OnInit{
     constructor(){}
 
     ngOnInit() {
-        console.log(this.publishedDate);
+
     }
 
     @HostBinding("style.borderBottomColor") get getBorderBottomColor(){

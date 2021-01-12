@@ -10,10 +10,12 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
-import { FilterComponent } from './filter/filter.component';
 import { HeaderModule } from './header/header.module';
 import { ItemsService } from './shared/services/items.service';
 import { SearchModule } from './search/search.module';
+import { SortByDatePipe } from './shared/pipes/sortByDate.pipe';
+import { SortByViewsPipe } from './shared/pipes/sortByViews.pipe';
+import { SortByWordPipe } from './shared/pipes/sortByWord.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,9 @@ import { SearchModule } from './search/search.module';
     RegistrationComponent,
     HeaderComponent,
     SearchComponent,
-    FilterComponent
+    SortByDatePipe,
+    SortByViewsPipe,
+    SortByWordPipe,
   ],
   imports: [
     BrowserModule,
