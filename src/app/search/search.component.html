@@ -1,1 +1,9 @@
-<p>search works!</p>
+<ts-filter
+    (filterByDate) = "filterByDate()"
+    (filterByViews) = "filterByViews()"
+    (filterByWord) = "filterByWord($event)"
+></ts-filter>
+<div class="results">
+    <ts-search-item *ngFor="let i of filteredResponse.items" [item]="i">
+    </ts-search-item>
+</div>
