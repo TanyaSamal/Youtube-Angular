@@ -1,4 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
+import { Constants } from '../../shared/consts';
 
 @Directive({
     selector: '[colorBorder]'
@@ -19,12 +20,12 @@ export class ColorBorderDirective {
 
     @HostBinding('style.borderBottomColor') public get getBorderBottomColor(): string {
         const period: number = this.getTimePeriod();
-        if (period < 604800000) {
-            this.borderBottom = 'blue';
-        } else if (period > 604800000 && period < 2678400000) {
-            this.borderBottom = 'green';
+        if (period < Constants.ONE_WEEK) {
+            this.borderBottom = Constants.BLUE_BORDER;
+        } else if (period > Constants.ONE_WEEK && period < Constants.ONE_MOUNTH) {
+            this.borderBottom = Constants.GREEN_BORDER;
         } else {
-            this.borderBottom = 'red';
+            this.borderBottom = Constants.RED_BORDER;
         }
         return this.borderBottom;
     }
