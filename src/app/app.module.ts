@@ -8,36 +8,25 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
-import { HeaderComponent } from './header/header.component';
-import { SearchComponent } from './search/search.component';
-import { HeaderModule } from './header/header.module';
-import { ItemsService } from './shared/services/items.service';
-import { SearchModule } from './search/search.module';
-import { SortByDatePipe } from './shared/pipes/sortByDate.pipe';
-import { SortByViewsPipe } from './shared/pipes/sortByViews.pipe';
-import { SortByWordPipe } from './shared/pipes/sortByWord.pipe';
+import { SearchComponent } from './youtube/components/search/search.component';
+import { CoreModule } from './core/core.module';
+import { YoutubeModule } from './youtube/youtube.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     LoginComponent,
     RegistrationComponent,
-    HeaderComponent,
-    SearchComponent,
-    SortByDatePipe,
-    SortByViewsPipe,
-    SortByWordPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    HeaderModule,
-    SearchModule
-  ],
-  providers: [
-    ItemsService
+    CoreModule,
+    YoutubeModule
   ],
   bootstrap: [AppComponent]
 })

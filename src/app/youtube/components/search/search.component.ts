@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ItemsService } from '../shared/services/items.service';
-import { ISearchResponse } from '../shared/models/search-response.model';
+import { ItemsService } from '../../services/items.service';
+import { ISearchResponse } from '../../models/search-response.model';
 import { Subscription } from 'rxjs';
-import { SortByDatePipe } from '../shared/pipes/sortByDate.pipe';
-import { SortByViewsPipe } from '../shared/pipes/sortByViews.pipe';
-import { SortByWordPipe } from '../shared/pipes/sortByWord.pipe';
+import { SortByDatePipe } from '../../pipes/sortByDate.pipe';
+import { SortByViewsPipe } from '../../pipes/sortByViews.pipe';
+import { SortByWordPipe } from '../../pipes/sortByWord.pipe';
 
 @Component({
   selector: 'ts-search',

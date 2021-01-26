@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { SearchInputComponent } from './search-input/search-input.component';
-import { SettingsComponent } from './settings/settings.component';
-import { LoginInfoComponent } from './login-info/login-info.component';
+import { SearchInputComponent } from './components/header/search-input/search-input.component';
+import { SettingsComponent } from './components/header/settings/settings.component';
+import { LoginInfoComponent } from './components/header/login-info/login-info.component';
+import { HeaderComponent } from './components/header/header.component';
 import { MaterialModule } from '../material.module';
 import { ToggleDirective } from './directives/toggle.directive';
 
@@ -14,14 +15,16 @@ import { ToggleDirective } from './directives/toggle.directive';
     exports: [
         SearchInputComponent,
         SettingsComponent,
-        LoginInfoComponent
+        LoginInfoComponent,
+        HeaderComponent
     ],
     declarations: [
         SearchInputComponent,
         SettingsComponent,
         LoginInfoComponent,
+        HeaderComponent,
         ToggleDirective
     ]
 })
 
-export class HeaderModule {}
+export class CoreModule {}
