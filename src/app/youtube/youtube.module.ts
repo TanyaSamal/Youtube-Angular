@@ -8,6 +8,7 @@ import { SortByDatePipe } from './pipes/sortByDate.pipe';
 import { SortByViewsPipe } from './pipes/sortByViews.pipe';
 import { SortByWordPipe } from './pipes/sortByWord.pipe';
 import { ItemsService } from './services/items.service';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule ({
     imports: [
@@ -25,6 +26,7 @@ import { ItemsService } from './services/items.service';
         SortByDatePipe,
         SortByViewsPipe,
         SortByWordPipe,
+        CardComponent,
     ],
     providers: [
         ItemsService

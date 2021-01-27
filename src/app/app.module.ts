@@ -4,21 +4,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from './material.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegistrationComponent } from './auth/registration/registration.component';
+import { LoginComponent } from './auth/components/login/login.component';
 import { SearchComponent } from './youtube/components/search/search.component';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
     LoginComponent,
-    RegistrationComponent,
-    SearchComponent
+    SearchComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +25,8 @@ import { YoutubeModule } from './youtube/youtube.module';
     MaterialModule,
     HttpClientModule,
     CoreModule,
-    YoutubeModule
+    YoutubeModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })
