@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 import { SearchInputComponent } from './components/header/search-input/search-input.component';
 import { SettingsComponent } from './components/header/settings/settings.component';
 import { LoginInfoComponent } from './components/header/login-info/login-info.component';
@@ -10,7 +12,8 @@ import { ToggleDirective } from './directives/toggle.directive';
 @NgModule ({
     imports: [
         CommonModule,
-        MaterialModule
+        MaterialModule,
+        RouterModule
     ],
     exports: [
         SearchInputComponent,

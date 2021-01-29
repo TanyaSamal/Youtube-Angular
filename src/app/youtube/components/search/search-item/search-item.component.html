@@ -15,5 +15,5 @@
         </div>
     </div>
     <p>{{ item.snippet.title }}</p>
-    <button mat-raised-button color="primary">More...</button>
+    <a mat-raised-button color="primary" [routerLink]="['/card', item.id]">More...</a>
 </div>

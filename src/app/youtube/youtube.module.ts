@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 import { SearchItemComponent } from './components/search/search-item/search-item.component';
 import { MaterialModule } from '../material.module';
 import { ColorBorderDirective } from './directives/colorBorder.directive';
@@ -13,7 +15,8 @@ import { CardComponent } from './components/card/card.component';
 @NgModule ({
     imports: [
         CommonModule,
-        MaterialModule
+        MaterialModule,
+        RouterModule
     ],
     exports: [
         SearchItemComponent,
