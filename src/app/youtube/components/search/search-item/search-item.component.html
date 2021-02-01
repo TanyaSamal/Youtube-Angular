@@ -1,19 +1,6 @@
 <div class="card" colorBorder publishedDate="{{ item.snippet.publishedAt }}">
     <img src="{{ item.snippet.thumbnails.medium.url }}">
-    <div class="socials">
-        <div class="views">
-            <mat-icon md-18>visibility</mat-icon> {{ item.statistics.viewCount }}
-        </div>
-        <div class="like">
-            <mat-icon md-18>thumb_up_at</mat-icon> {{ item.statistics.likeCount }}
-        </div>
-        <div class="dislike">
-            <mat-icon md-18>thumb_down_at</mat-icon> {{ item.statistics.dislikeCount }}
-        </div>
-        <div class="comments">
-            <mat-icon md-18>comments</mat-icon> {{ item.statistics.commentCount }}
-        </div>
-    </div>
+    <ts-socials-block [item]="item"></ts-socials-block>
     <p>{{ item.snippet.title }}</p>
     <a mat-raised-button color="primary" [routerLink]="['/card', item.id]">More...</a>
 </div>

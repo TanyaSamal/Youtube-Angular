@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
+
 import { ISearchItem } from '../../models/search-item.model';
 import { ISearchResponse } from '../../models/search-response.model';
 import { ItemsService } from '../../services/items.service';
@@ -17,8 +19,11 @@ export class CardComponent implements OnInit, OnDestroy {
   id: string;
   public item: ISearchItem;
 
-  constructor(private route: ActivatedRoute,
-    private itemService: ItemsService,) { }
+  constructor(
+    private route: ActivatedRoute,
+    private itemService: ItemsService,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
     this.sub = this.route.params
@@ -31,6 +36,10 @@ export class CardComponent implements OnInit, OnDestroy {
       });
     }); 
 
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   ngOnDestroy() {

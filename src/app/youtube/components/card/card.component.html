@@ -1,3 +1,19 @@
-<h3 class="title">
-    Страница записи № {{item.snippet.title}}
-</h3>
+<div class="card" >
+    <div class="back-btn" (click)="goBack()"><</div>
+    <div class="card-img">
+        <img src="{{ item.snippet.thumbnails.standard.url }}">
+    </div>
+    <div class="card-info" colorBorder publishedDate="{{ item.snippet.publishedAt }}">
+        <div>
+            <div class="card-title">
+                <h2>{{ item.snippet.title }}</h2>
+                <p>{{item.snippet.publishedAt | date:'fullDate'}}</p>
+            </div>
+            <p>Description:</p>
+            <p class="description">{{item.snippet.description}}</p>
+        </div>
+        <div class="socials-block">
+            <ts-socials-block [item]="item"></ts-socials-block>
+        </div>
+    </div>
+</div>

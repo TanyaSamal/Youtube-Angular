@@ -15,33 +15,6 @@
         margin: 20px;
     }
 
-    .socials {
-        margin: 0 20px;
-        display: flex;
-        justify-content: space-between;
-
-        div {
-            float: left;
-            margin-right: 10px;
-
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 10px;
-            line-height: 12px;
-
-            .material-icons {
-                font-size: 18px;
-                height: 18px;
-                width: 18px;
-            }
-        }
-
-        .comments {
-            margin-right: 0;
-        }
-    }
-
     p {
         font-family: Roboto;
         font-style: normal;
@@ -54,7 +27,7 @@
         color: #4F4F4F;
     }
 
-    button {
+    a {
         margin: 10px auto;
         width: 120px;
         height: 32px;

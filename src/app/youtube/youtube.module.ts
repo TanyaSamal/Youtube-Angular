@@ -11,6 +11,7 @@ import { SortByViewsPipe } from './pipes/sortByViews.pipe';
 import { SortByWordPipe } from './pipes/sortByWord.pipe';
 import { ItemsService } from './services/items.service';
 import { CardComponent } from './components/card/card.component';
+import { SocialsBlockComponent } from './components/socials-block/socials-block.component';
 
 @NgModule ({
     imports: [
@@ -30,6 +31,7 @@ import { CardComponent } from './components/card/card.component';
         SortByViewsPipe,
         SortByWordPipe,
         CardComponent,
+        SocialsBlockComponent,
     ],
     providers: [
         ItemsService
