@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { User } from '../../models/user.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'ts-login',
@@ -10,8 +14,12 @@ export class LoginComponent implements OnInit {
 
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('');
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   public ngOnInit(): void {
   }
@@ -22,6 +30,14 @@ export class LoginComponent implements OnInit {
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  onSubmit() {
+    let user: User = Object.assign({});
+    user.email = this.email.value;
+    user.password = this.password.value;
+    this.authService.login(user);
+    this.router.navigate(['/']);
   }
 
 }

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../material.module';
 import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
 
 
 @NgModule ({
@@ -20,6 +21,9 @@ import { LoginComponent } from './components/login/login.component';
     ],
     declarations: [
         LoginComponent
+    ],
+    providers: [
+        AuthService
     ]
 })
 
