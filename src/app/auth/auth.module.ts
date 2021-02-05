@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth.guard';
 
 
 @NgModule ({
@@ -23,7 +24,8 @@ import { AuthService } from './services/auth.service';
         LoginComponent
     ],
     providers: [
-        AuthService
+        AuthService,
+        AuthGuard
     ]
 })
 

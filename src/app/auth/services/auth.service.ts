@@ -3,6 +3,7 @@ import { User } from "../models/user.model";
 export class AuthService {
 
     private isAuthenticated = false;
+
     login(user: User): void {
         window.localStorage.setItem('user', JSON.stringify(user));
         this.isAuthenticated = true;
@@ -14,6 +15,6 @@ export class AuthService {
     }
 
     isLoggedIn(): boolean {
-        return this.isAuthenticated;
+        return (window.localStorage.getItem('user') !== null) ? true : false;
     }
 }
