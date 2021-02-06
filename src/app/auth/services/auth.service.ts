@@ -1,20 +1,20 @@
-import { User } from "../models/user.model";
+import { User } from '../models/user.model';
 
 export class AuthService {
 
-    private isAuthenticated = false;
+    private isAuthenticated: boolean = false;
 
-    login(user: User): void {
+    public login(user: User): void {
         window.localStorage.setItem('user', JSON.stringify(user));
         this.isAuthenticated = true;
     }
 
-    logout(): void {
+    public logout(): void {
         this.isAuthenticated = false;
         window.localStorage.clear();
     }
 
-    isLoggedIn(): boolean {
+    public isLoggedIn(): boolean {
         return (window.localStorage.getItem('user') !== null) ? true : false;
     }
 }

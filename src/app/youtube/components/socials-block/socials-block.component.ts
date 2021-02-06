@@ -12,7 +12,7 @@ export class SocialsBlockComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

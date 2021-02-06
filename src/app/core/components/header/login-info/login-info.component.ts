@@ -17,7 +17,7 @@ export class LoginInfoComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  onLogout() {
+  public onLogout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
   }

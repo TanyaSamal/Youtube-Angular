@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 
-export class FilterComponent implements OnInit{
+export class FilterComponent implements OnInit {
 
   @Output() public filterByDate: EventEmitter<any> = new EventEmitter<any>();
   @Output() public filterByViews: EventEmitter<any> = new EventEmitter<any>();

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { User } from '../../models/user.model';
@@ -12,9 +12,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('');
+  public hide: boolean = true;
+  public email: FormControl = new FormControl('', [Validators.required, Validators.email]);
+  public password: FormControl = new FormControl('');
 
   constructor(
     private authService: AuthService,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  getErrorMessage() {
+  public getErrorMessage(): string {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  onSubmit() {
+  public onSubmit(): void {
     let user: User = Object.assign({});
     user.email = this.email.value;
     user.password = this.password.value;

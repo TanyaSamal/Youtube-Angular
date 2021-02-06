@@ -14,10 +14,10 @@ import { ItemsService } from '../../services/items.service';
 })
 export class CardComponent implements OnInit, OnDestroy {
 
-  sub: Subscription;
-  public response: ISearchResponse;
-  id: string;
-  public item: ISearchItem;
+  public sub: Subscription;
+  public response: ISearchResponse = Object.assign({});
+  public id: string;
+  public item: ISearchItem = Object.assign({});
 
   constructor(
     private route: ActivatedRoute,
@@ -25,24 +25,24 @@ export class CardComponent implements OnInit, OnDestroy {
     private location: Location
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.sub = this.route.params
     .subscribe((params: Params) => {
-      this.id = params['id'];
+      this.id = params.id;
       this.itemService.getResponse()
       .subscribe((data: ISearchResponse) => {
         this.response = { ...data };
         this.item = this.response.items.find(item => item.id === this.id);
       });
-    }); 
+    });
 
   }
 
-  goBack() {
+  public goBack(): void {
     this.location.back();
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     if (this.sub) {
       this.sub.unsubscribe();
     }

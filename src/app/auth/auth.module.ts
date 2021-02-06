@@ -8,13 +8,12 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth.guard';
 
-
 @NgModule ({
     imports: [
         CommonModule,
         MaterialModule,
         RouterModule,
-        ReactiveFormsModule, 
+        ReactiveFormsModule,
         FormsModule
     ],
     exports: [

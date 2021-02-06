@@ -15,8 +15,8 @@ import { SortByWordPipe } from '../../pipes/sortByWord.pipe';
 
 export class SearchComponent implements OnInit, OnDestroy {
 
-  public response: ISearchResponse;
-  public filteredResponse: ISearchResponse;
+  public response: ISearchResponse = Object.assign({});
+  public filteredResponse: ISearchResponse = Object.assign({});
   public isFilterByDate: boolean = false;
   public isFilterByViews: boolean = false;
   public sub: Subscription;
