@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
-import { AuthGuard } from './services/auth.guard';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule ({
     imports: [
@@ -14,7 +14,8 @@ import { AuthGuard } from './services/auth.guard';
         MaterialModule,
         RouterModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        AuthRoutingModule
     ],
     exports: [
         LoginComponent
@@ -23,8 +24,7 @@ import { AuthGuard } from './services/auth.guard';
         LoginComponent
     ],
     providers: [
-        AuthService,
-        AuthGuard
+        AuthService
     ]
 })
 

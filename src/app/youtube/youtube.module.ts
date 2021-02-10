@@ -12,12 +12,14 @@ import { SortByWordPipe } from './pipes/sortByWord.pipe';
 import { ItemsService } from './services/items.service';
 import { CardComponent } from './components/card/card.component';
 import { SocialsBlockComponent } from './components/socials-block/socials-block.component';
+import { YoutubeRoutingModule } from './youtube-routing.module';
 
 @NgModule ({
     imports: [
         CommonModule,
         MaterialModule,
-        RouterModule
+        RouterModule,
+        YoutubeRoutingModule
     ],
     exports: [
         SearchItemComponent,
