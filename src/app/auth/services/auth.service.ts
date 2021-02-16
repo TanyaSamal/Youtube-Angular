@@ -1,8 +1,9 @@
+import { Observable, of } from 'rxjs';
 import { User } from '../models/user.model';
 
 export class AuthService {
 
-    private isAuthenticated: boolean = false;
+    private isAuthenticated = (window.localStorage.getItem('user') !== null) ? true : false;
 
     public login(user: User): void {
         window.localStorage.setItem('user', JSON.stringify(user));
@@ -14,7 +15,7 @@ export class AuthService {
         window.localStorage.clear();
     }
 
-    public isLoggedIn(): boolean {
-        return (window.localStorage.getItem('user') !== null) ? true : false;
+    public isLoggedIn(): Observable<boolean> {
+        return of(this.isAuthenticated);
     }
 }

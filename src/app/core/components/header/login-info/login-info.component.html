@@ -1,3 +1,4 @@
 <div class="login-info">
-    <a [routerLink]="['/login']">Login</a>&nbsp;/&nbsp;<a (click)="onLogout()">Logout</a> <mat-icon>person</mat-icon>
+    <a [routerLink]="['/login']" [ngClass]="{'hide-link': isLoggedIn}">Login</a>
+    <a (click)="onLogout()" [ngClass]="{'hide-link': !isLoggedIn}">Logout</a> <mat-icon>person</mat-icon>
 </div>

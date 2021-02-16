@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
 
   public hide: boolean = true;
   public email: FormControl = new FormControl('', [Validators.required, Validators.email]);

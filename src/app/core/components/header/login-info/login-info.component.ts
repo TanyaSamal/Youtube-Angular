@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -7,7 +8,10 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './login-info.component.html',
   styleUrls: ['./login-info.component.scss']
 })
-export class LoginInfoComponent implements OnInit {
+export class LoginInfoComponent implements OnInit, OnDestroy {
+
+  isLoggedIn: boolean = false;
+  sub: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -15,11 +19,19 @@ export class LoginInfoComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.sub = this.authService.isLoggedIn().subscribe(
+      data => this.isLoggedIn = data
+    );
   }
 
   public onLogout(): void {
     this.authService.logout();
+    this.isLoggedIn = false;
     this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.sub) this.sub.unsubscribe();
   }
 
 }
