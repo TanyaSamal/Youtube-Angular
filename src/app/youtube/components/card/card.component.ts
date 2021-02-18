@@ -29,13 +29,12 @@ export class CardComponent implements OnInit, OnDestroy {
     this.sub = this.route.params
     .subscribe((params: Params) => {
       this.id = params.id;
-      this.itemService.getResponse()
+      this.itemService.getResponse('js')
       .subscribe((data: ISearchResponse) => {
         this.response = { ...data };
-        this.item = this.response.items.find(item => item.id === this.id);
+        this.item = this.response.items.find(item => item.id.videoId === this.id);
       });
     });
-
   }
 
   public goBack(): void {
@@ -43,9 +42,9 @@ export class CardComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+    // if (this.sub) {
+    //   this.sub.unsubscribe();
+    // }
   }
 
 }

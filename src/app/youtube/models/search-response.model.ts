@@ -4,6 +4,8 @@ export interface ISearchResponse {
     kind: string;
     etag: string;
     pageInfo: IPageInfo;
+    nextPageToken: string;
+    regionCode: string;
     items: ISearchItem[];
 }
 

@@ -1,13 +1,19 @@
 export interface ISearchItem {
     kind: string;
     etag: string;
-    id: string;
+    id: IVideoId;
     snippet: ISnippet;
     statistics: IStatistisc;
 }
 
+interface IVideoId {
+    kind: string;
+    videoId: string;
+}
+
 interface ISnippet {
     publishedAt: string;
+    publishTime: string;
     channelId: string;
     title: string;
     description: string;

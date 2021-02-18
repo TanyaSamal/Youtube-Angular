@@ -17,9 +17,12 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public response: ISearchResponse = Object.assign({});
   public filteredResponse: ISearchResponse = Object.assign({});
+  public statistics: ISearchResponse = Object.assign({});
+
   public isFilterByDate: boolean = false;
   public isFilterByViews: boolean = false;
-  public sub: Subscription;
+  public sub1: Subscription;
+  public sub2: Subscription;
 
   constructor(
     private itemService: ItemsService,
@@ -29,14 +32,24 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) { }
 
   private setOriginalResponse(): void {
-    this.filteredResponse = Object.assign({}, this.response);
+    this.filteredResponse = Object.assign({}, this.statistics);
   }
 
   public ngOnInit(): void {
-    this.itemService.getResponse()
+    this.sub1 = this.itemService.getResponse('js')
     .subscribe((data: ISearchResponse) => {
+      let queryIds: string = '';
       this.response = { ...data };
-      this.setOriginalResponse();
+
+      this.response.items.forEach(function (item) {
+        queryIds = '' + queryIds + item.id.videoId + ',';
+      }); 
+      
+      this.sub2 = this.itemService.getStatistics(queryIds)
+      .subscribe((data) => {
+        this.statistics = { ...data };
+        this.setOriginalResponse();
+      });
     });
   }
 
@@ -58,8 +71,11 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.sub1) {
+      this.sub1.unsubscribe();
+    }
+    if (this.sub2) {
+      this.sub2.unsubscribe();
     }
   }
 
