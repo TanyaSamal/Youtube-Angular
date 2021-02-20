@@ -1,6 +1,6 @@
 .card {
     display: flex;
-    margin: 40px 100px;
+    margin: 40px 150px;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -26,12 +26,13 @@
     }
 
     .card-img {
-        width: 640px;
-        height: 480px;
+        width: 480px;
+        height: 360px;
     }
 
     .card-info {
         padding: 0 30px;
+        height: 355px;
         box-shadow: 5px 5px 20px rgba(51, 51, 51, 0.25);
         border-radius: 0px 5px 5px 0px;
         border-bottom: 5px solid blue;
@@ -61,7 +62,7 @@
             font-size: 12px;
             line-height: 14px;
             color: #828282;
-            height: 247px;
+            height: 120px;
             overflow: auto;
         }
 

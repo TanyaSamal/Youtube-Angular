@@ -8,7 +8,7 @@ import { ISearchItem} from '../../models/search-item.model';
 })
 export class SocialsBlockComponent implements OnInit {
 
-  @Input() public item: ISearchItem;
+  @Input() public item: ISearchItem = Object.assign({});
 
   constructor() { }
 

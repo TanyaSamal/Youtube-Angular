@@ -37,7 +37,7 @@ export class ItemsService {
        return this.http.get<ISearchResponse>(`${this.searchUrl}?${queryVideo}`);
     }
 
-    public getStatistics(idStr): Observable<any> {
-        return this.http.get(`${this.statisticsUrl}?key=${this.params.key}&id=${idStr}&part=snippet,statistics`);
+    public getStatistics(idStr): Observable<ISearchResponse> {
+        return this.http.get<ISearchResponse>(`${this.statisticsUrl}?key=${this.params.key}&id=${idStr}&part=snippet,statistics`);
     }
 }

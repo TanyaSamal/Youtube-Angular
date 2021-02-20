@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
 import { ISearchItem } from '../../models/search-item.model';
@@ -16,7 +17,6 @@ export class CardComponent implements OnInit, OnDestroy {
 
   public sub: Subscription;
   public response: ISearchResponse = Object.assign({});
-  public id: string;
   public item: ISearchItem = Object.assign({});
 
   constructor(
@@ -26,25 +26,30 @@ export class CardComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.sub = this.route.params
-    .subscribe((params: Params) => {
-      this.id = params.id;
-      this.itemService.getResponse('js')
-      .subscribe((data: ISearchResponse) => {
-        this.response = { ...data };
-        this.item = this.response.items.find(item => item.id.videoId === this.id);
-      });
+    this.sub = this.route.params.pipe(
+      map((params: Params) => {
+        return params.id;
+      }),
+      mergeMap((id) => {
+        const commonResponse = this.itemService.getResponse('js');
+        const statisticsResponse = this.itemService.getStatistics(id);
+        return forkJoin([commonResponse, statisticsResponse]);
+      })
+    ).subscribe((data) => {
+      this.response = {...data[1]};
+      this.item = this.response.items[0];
     });
   }
+
 
   public goBack(): void {
     this.location.back();
   }
 
   public ngOnDestroy(): void {
-    // if (this.sub) {
-    //   this.sub.unsubscribe();
-    // }
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }

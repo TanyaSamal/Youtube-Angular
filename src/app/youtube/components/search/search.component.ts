@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
+
 import { ItemsService } from '../../services/items.service';
 import { ISearchResponse } from '../../models/search-response.model';
-import { Subscription } from 'rxjs';
 import { SortByDatePipe } from '../../pipes/sortByDate.pipe';
 import { SortByViewsPipe } from '../../pipes/sortByViews.pipe';
 import { SortByWordPipe } from '../../pipes/sortByWord.pipe';
@@ -36,20 +38,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.sub1 = this.itemService.getResponse('js')
-    .subscribe((data: ISearchResponse) => {
-      let queryIds: string = '';
-      this.response = { ...data };
+    this.sub1 = this.itemService.getResponse('js').pipe(
+      mergeMap((data) => {
+        let queryIds: string = '';
+        this.response = { ...data };
 
-      this.response.items.forEach(function (item) {
-        queryIds = '' + queryIds + item.id.videoId + ',';
-      }); 
-      
-      this.sub2 = this.itemService.getStatistics(queryIds)
-      .subscribe((data) => {
-        this.statistics = { ...data };
-        this.setOriginalResponse();
-      });
+        this.response.items.forEach(function (item) {
+          queryIds = '' + queryIds + item.id.videoId + ',';
+        });
+
+        return this.itemService.getStatistics(queryIds);
+      })
+    ).subscribe((data) => {
+      this.statistics = { ...data };
+      this.setOriginalResponse();
     });
   }
 
