@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'ts-search-input',
@@ -7,13 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchInputComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public ngOnInit(): void {}
 
-  public showResults(): void {
-    const div: HTMLElement = document.querySelector('.results');
-    div.classList.add('show');
+  public showResults(serchStr: string): void {
+    this.router.navigate([serchStr]);
   }
 
 }

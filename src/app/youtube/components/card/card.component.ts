@@ -41,7 +41,6 @@ export class CardComponent implements OnInit, OnDestroy {
     });
   }
 
-
   public goBack(): void {
     this.location.back();
   }

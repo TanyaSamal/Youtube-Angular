@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Subscription, forkJoin } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
 import { ItemsService } from '../../services/items.service';
@@ -7,6 +7,7 @@ import { ISearchResponse } from '../../models/search-response.model';
 import { SortByDatePipe } from '../../pipes/sortByDate.pipe';
 import { SortByViewsPipe } from '../../pipes/sortByViews.pipe';
 import { SortByWordPipe } from '../../pipes/sortByWord.pipe';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'ts-search',
@@ -27,6 +28,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   public sub2: Subscription;
 
   constructor(
+    private route: ActivatedRoute,
     private itemService: ItemsService,
     private sortByDatePipe: SortByDatePipe,
     private sortByViewsPipe: SortByViewsPipe,
@@ -38,9 +40,19 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.sub1 = this.itemService.getResponse('js').pipe(
+    this.sub1 = this.route.params.pipe(
+      map((params: Params) => {
+        return params.searchValue;
+      }),
+      mergeMap((searchValue) => {
+        console.log(searchValue);
+        
+        return this.itemService.getResponse(searchValue);
+      }),
       mergeMap((data) => {
         let queryIds: string = '';
+        console.log(data);
+        
         this.response = { ...data };
 
         this.response.items.forEach(function (item) {
@@ -50,9 +62,26 @@ export class SearchComponent implements OnInit, OnDestroy {
         return this.itemService.getStatistics(queryIds);
       })
     ).subscribe((data) => {
+      console.log(data);
+      
       this.statistics = { ...data };
       this.setOriginalResponse();
     });
+    // this.sub1 = this.itemService.getResponse('').pipe(
+    //   mergeMap((data) => {
+    //     let queryIds: string = '';
+    //     this.response = { ...data };
+
+    //     this.response.items.forEach(function (item) {
+    //       queryIds = '' + queryIds + item.id.videoId + ',';
+    //     });
+
+    //     return this.itemService.getStatistics(queryIds);
+    //   })
+    // ).subscribe((data) => {
+    //   this.statistics = { ...data };
+    //   this.setOriginalResponse();
+    // });
   }
 
   public filterByDate(): void {

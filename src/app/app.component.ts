@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'ts-root',
@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title: string = 'Youtube-Angular';
+  // public searchString: string = '';
+
+  // public startSearch(searchValue: string) {
+  //   this.searchString = searchValue;
+  // }
 }
