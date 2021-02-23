@@ -45,13 +45,11 @@ export class SearchComponent implements OnInit, OnDestroy {
         return params.searchValue;
       }),
       mergeMap((searchValue) => {
-        console.log(searchValue);
         
         return this.itemService.getResponse(searchValue);
       }),
       mergeMap((data) => {
         let queryIds: string = '';
-        console.log(data);
         
         this.response = { ...data };
 
@@ -62,8 +60,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         return this.itemService.getStatistics(queryIds);
       })
     ).subscribe((data) => {
-      console.log(data);
-      
       this.statistics = { ...data };
       this.setOriginalResponse();
     });

@@ -7,9 +7,4 @@ import { Component} from '@angular/core';
 })
 export class AppComponent {
   public title: string = 'Youtube-Angular';
-  // public searchString: string = '';
-
-  // public startSearch(searchValue: string) {
-  //   this.searchString = searchValue;
-  // }
 }
