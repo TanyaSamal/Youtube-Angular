@@ -19,12 +19,12 @@ export class SearchInputComponent implements OnInit {
     const typeahead = fromEvent(searchBox, 'input').pipe(
       map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
       filter(text => text.length > 3),
-      debounceTime(10),
+      debounceTime(50),
       distinctUntilChanged()
     );
 
     typeahead.subscribe(searchTerm => {
-      this.router.navigate([searchTerm])
+      this.router.navigate(['/search', searchTerm])
     });
   }
 

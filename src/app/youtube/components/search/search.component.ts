@@ -20,10 +20,17 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   public response: ISearchResponse = Object.assign({});
   public filteredResponse: ISearchResponse = Object.assign({});
+  public nextResponse: ISearchResponse = Object.assign({});
   public statistics: ISearchResponse = Object.assign({});
+  public nextStatistics: ISearchResponse = Object.assign({});
 
   public isFilterByDate: boolean = false;
   public isFilterByViews: boolean = false;
+  public isLoaded: boolean = false;
+
+  public searchedValue: string = '';
+  public nextStr: string = '';
+
   public sub1: Subscription;
   public sub2: Subscription;
 
@@ -42,10 +49,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.sub1 = this.route.params.pipe(
       map((params: Params) => {
+        this.searchedValue = params.searchValue;
         return params.searchValue;
       }),
       mergeMap((searchValue) => {
-        
         return this.itemService.getResponse(searchValue);
       }),
       mergeMap((data) => {
@@ -57,27 +64,40 @@ export class SearchComponent implements OnInit, OnDestroy {
           queryIds = '' + queryIds + item.id.videoId + ',';
         });
 
+        this.nextStr = this.response.nextPageToken;
+
         return this.itemService.getStatistics(queryIds);
       })
     ).subscribe((data) => {
       this.statistics = { ...data };
       this.setOriginalResponse();
+      this.isLoaded = true;
     });
-    // this.sub1 = this.itemService.getResponse('').pipe(
-    //   mergeMap((data) => {
-    //     let queryIds: string = '';
-    //     this.response = { ...data };
+  }
 
-    //     this.response.items.forEach(function (item) {
-    //       queryIds = '' + queryIds + item.id.videoId + ',';
-    //     });
+  public showNextResults(): void {
+    this.itemService.getNextPart(this.searchedValue, this.nextStr).pipe(
+      mergeMap((data) => {
+        let queryIds: string = '';
+        
+        this.nextResponse = { ...data };
 
-    //     return this.itemService.getStatistics(queryIds);
-    //   })
-    // ).subscribe((data) => {
-    //   this.statistics = { ...data };
-    //   this.setOriginalResponse();
-    // });
+        this.nextResponse.items.forEach(function (item) {
+          queryIds = '' + queryIds + item.id.videoId + ',';
+        });
+
+        this.nextStr = this.nextResponse.nextPageToken;
+        this.nextResponse = Object.assign({});
+        return this.itemService.getStatistics(queryIds);
+      })
+    ).subscribe((data) => {
+      console.log(this.statistics);
+      this.nextStatistics = { ...data };
+      this.statistics.items = this.statistics.items.concat(this.nextStatistics.items);
+      console.log(this.statistics);
+      this.setOriginalResponse();
+      this.isLoaded = true;
+    });
   }
 
   public filterByDate(): void {

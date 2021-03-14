@@ -4,6 +4,7 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 
 const routes: Routes = [
     { path: '', loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule) },
+    { path: 'ok', loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule) },
     { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
     { path: '**', component: NotFoundComponent }
 ];

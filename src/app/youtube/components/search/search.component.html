@@ -6,4 +6,8 @@
 <div class="results show">
     <ts-search-item *ngFor="let i of filteredResponse.items" [item]="i">
     </ts-search-item>
+    <div class="more-btn" [ngClass]="{'hide-link': !isLoaded}">
+        <a mat-raised-button color="primary" (click)="showNextResults()">Show more</a>
+    </div>
 </div>
+

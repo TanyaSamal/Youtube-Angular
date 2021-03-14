@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit{
     user.email = this.email.value;
     user.password = this.password.value;
     this.authService.login(user);
-    this.router.navigate(['/']);
+    this.router.navigate(['/ok']);
   }
 
 }

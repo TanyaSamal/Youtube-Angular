@@ -9,7 +9,7 @@ import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
     { path: '', component: FilterComponent },
-    { path: ':searchValue', component: SearchComponent, canActivate: [AuthGuard] },
+    { path: 'search/:searchValue', component: SearchComponent, canActivate: [AuthGuard] },
     { path: 'card/:id', component: CardComponent, canActivate: [AuthGuard] }
 ];
 

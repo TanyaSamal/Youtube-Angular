@@ -14,7 +14,7 @@ export class ItemsService {
         key: 'AIzaSyCCS6lbNp7tUOZBU5dGdd87H8O_NgJsFBw',
         type: 'video',
         part: 'snippet',
-        maxResults: '15'
+        maxResults: '16'
       };
 
     constructor(private http: HttpClient) {}
@@ -39,5 +39,10 @@ export class ItemsService {
 
     public getStatistics(idStr): Observable<ISearchResponse> {
         return this.http.get<ISearchResponse>(`${this.statisticsUrl}?key=${this.params.key}&id=${idStr}&part=snippet,statistics`);
+    }
+
+    public getNextPart(query, next): Observable<ISearchResponse> {
+        let queryVideo = this.joinQueryParams(query); 
+        return this.http.get<ISearchResponse>(`${this.searchUrl}?${queryVideo}&pageToken=${next}`);
     }
 }
