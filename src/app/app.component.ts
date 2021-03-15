@@ -1,4 +1,5 @@
 import { Component} from '@angular/core';
+import { Constants } from './shared/consts';
 
 @Component({
   selector: 'ts-root',
@@ -6,5 +7,5 @@ import { Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public title: string = 'Youtube-Angular';
+  public title: string = Constants.TITLE;
 }

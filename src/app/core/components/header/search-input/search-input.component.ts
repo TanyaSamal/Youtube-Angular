@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { Constants } from '../../../../shared/consts';
 
 @Component({
   selector: 'ts-search-input',
@@ -18,8 +19,8 @@ export class SearchInputComponent implements OnInit {
 
     const typeahead: Observable<any> = fromEvent(searchBox, 'input').pipe(
       map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
-      filter(text => text.length > 3),
-      debounceTime(50),
+      filter(text => text.length > Constants.MIN_CHARACTERS),
+      debounceTime(Constants.DEBOUNCE_TIME),
       distinctUntilChanged()
     );
 

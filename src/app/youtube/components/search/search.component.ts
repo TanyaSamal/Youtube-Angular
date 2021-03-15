@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Subscription, forkJoin } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
 import { ItemsService } from '../../services/items.service';
