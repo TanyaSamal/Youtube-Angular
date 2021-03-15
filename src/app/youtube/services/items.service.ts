@@ -19,30 +19,29 @@ export class ItemsService {
 
     constructor(private http: HttpClient) {}
 
-    private joinQueryParams(queryValue) {
+    private joinQueryParams(queryValue: string): string {
         let queryArr: Array<String> = [];
         let queryKeys: Array<String> = Object.keys(this.params);
-        var queryValues: Array<String> = Object.values(this.params);
+        let queryValues: Array<String> = Object.values(this.params);
 
         for (let i = 0; i < queryKeys.length; i += 1) {
           queryArr.push(`${queryKeys[i]}=${queryValues[i]}`);
         }
         queryArr.push(`q=${queryValue}`);
-      
         return queryArr.join('&');
     }
 
-    public getResponse(query): Observable<ISearchResponse> {
-       let queryVideo = this.joinQueryParams(query); 
+    public getResponse(query: string): Observable<ISearchResponse> {
+       let queryVideo: string = this.joinQueryParams(query);
        return this.http.get<ISearchResponse>(`${this.searchUrl}?${queryVideo}`);
     }
 
-    public getStatistics(idStr): Observable<ISearchResponse> {
+    public getStatistics(idStr: string): Observable<ISearchResponse> {
         return this.http.get<ISearchResponse>(`${this.statisticsUrl}?key=${this.params.key}&id=${idStr}&part=snippet,statistics`);
     }
 
-    public getNextPart(query, next): Observable<ISearchResponse> {
-        let queryVideo = this.joinQueryParams(query); 
+    public getNextPart(query: string, next: string): Observable<ISearchResponse> {
+        let queryVideo: string = this.joinQueryParams(query);
         return this.http.get<ISearchResponse>(`${this.searchUrl}?${queryVideo}&pageToken=${next}`);
     }
 }

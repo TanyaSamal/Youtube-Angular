@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class LoginInfoComponent implements OnInit, OnDestroy {
 
-  isLoggedIn: boolean = false;
-  sub: Subscription;
+  public isLoggedIn: boolean = false;
+  public sub: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -30,8 +30,10 @@ export class LoginInfoComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
-  ngOnDestroy(): void {
-    if (this.sub) this.sub.unsubscribe();
+  public ngOnDestroy(): void {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 }

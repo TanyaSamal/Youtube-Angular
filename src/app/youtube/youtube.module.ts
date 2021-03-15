@@ -13,7 +13,7 @@ import { ItemsService } from './services/items.service';
 import { CardComponent } from './components/card/card.component';
 import { SocialsBlockComponent } from './components/socials-block/socials-block.component';
 import { YoutubeRoutingModule } from './youtube-routing.module';
-import { shortenInterceptor } from './services/shortenInterceptor';
+import { ShortenInterceptor } from './services/shortenInterceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule ({
@@ -41,7 +41,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
         ItemsService,
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: shortenInterceptor,
+            useClass: ShortenInterceptor,
             multi: true,
         }
     ]

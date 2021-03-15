@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 
 @Component({
@@ -14,9 +14,9 @@ export class SearchInputComponent implements OnInit {
 
   public ngOnInit(): void {
 
-    const searchBox = document.querySelector('.search-box');
+    const searchBox: HTMLInputElement = document.querySelector('.search-box');
 
-    const typeahead = fromEvent(searchBox, 'input').pipe(
+    const typeahead: Observable<any> = fromEvent(searchBox, 'input').pipe(
       map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
       filter(text => text.length > 3),
       debounceTime(50),
@@ -24,7 +24,7 @@ export class SearchInputComponent implements OnInit {
     );
 
     typeahead.subscribe(searchTerm => {
-      this.router.navigate(['/search', searchTerm])
+      this.router.navigate(['/search', searchTerm]);
     });
   }
 

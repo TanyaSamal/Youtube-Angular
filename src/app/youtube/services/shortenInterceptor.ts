@@ -3,11 +3,12 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class shortenInterceptor implements HttpInterceptor {
+export class ShortenInterceptor implements HttpInterceptor {
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        
-        const newUrl = {url: 'https://www.googleapis.com/youtube/search'};
+    public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const newUrl = {
+            url: 'https://www.googleapis.com/youtube/search'
+        };
         req = Object.assign(req, newUrl);
 
         return next.handle(req);

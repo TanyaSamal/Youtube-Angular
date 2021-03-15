@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
 
-    isLoggedIn: boolean = false;
+    public isLoggedIn: boolean = false;
 
     constructor(private router: Router) {}
 

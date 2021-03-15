@@ -6,7 +6,6 @@ import { CardComponent } from './components/card/card.component';
 import { FilterComponent } from './components/search/filter/filter.component';
 import { SearchComponent } from './components/search/search.component';
 
-
 const routes: Routes = [
     { path: '', component: FilterComponent },
     { path: 'search/:searchValue', component: SearchComponent, canActivate: [AuthGuard] },

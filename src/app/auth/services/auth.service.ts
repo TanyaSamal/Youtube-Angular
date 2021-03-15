@@ -3,7 +3,7 @@ import { User } from '../models/user.model';
 
 export class AuthService {
 
-    private isAuthenticated = (window.localStorage.getItem('user') !== null) ? true : false;
+    private isAuthenticated: boolean = (window.localStorage.getItem('user') !== null) ? true : false;
 
     public login(user: User): void {
         window.localStorage.setItem('user', JSON.stringify(user));

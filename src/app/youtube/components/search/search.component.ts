@@ -4,6 +4,7 @@ import { map, mergeMap } from 'rxjs/operators';
 
 import { ItemsService } from '../../services/items.service';
 import { ISearchResponse } from '../../models/search-response.model';
+import { ISearchItem } from '../../models/search-item.model';
 import { SortByDatePipe } from '../../pipes/sortByDate.pipe';
 import { SortByViewsPipe } from '../../pipes/sortByViews.pipe';
 import { SortByWordPipe } from '../../pipes/sortByWord.pipe';
@@ -56,11 +57,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         return this.itemService.getResponse(searchValue);
       }),
       mergeMap((data) => {
-        let queryIds: string = '';
-        
+        let queryIds = '';
         this.response = { ...data };
 
-        this.response.items.forEach(function (item) {
+        this.response.items.forEach( (item: ISearchItem) => {
           queryIds = '' + queryIds + item.id.videoId + ',';
         });
 
@@ -76,13 +76,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public showNextResults(): void {
-    this.itemService.getNextPart(this.searchedValue, this.nextStr).pipe(
+    this.sub2 = this.itemService.getNextPart(this.searchedValue, this.nextStr).pipe(
       mergeMap((data) => {
-        let queryIds: string = '';
-        
+        let queryIds = '';
         this.nextResponse = { ...data };
 
-        this.nextResponse.items.forEach(function (item) {
+        this.nextResponse.items.forEach((item: ISearchItem) => {
           queryIds = '' + queryIds + item.id.videoId + ',';
         });
 
@@ -91,10 +90,8 @@ export class SearchComponent implements OnInit, OnDestroy {
         return this.itemService.getStatistics(queryIds);
       })
     ).subscribe((data) => {
-      console.log(this.statistics);
       this.nextStatistics = { ...data };
       this.statistics.items = this.statistics.items.concat(this.nextStatistics.items);
-      console.log(this.statistics);
       this.setOriginalResponse();
       this.isLoaded = true;
     });

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { forkJoin, Subscription } from 'rxjs';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
@@ -31,8 +31,8 @@ export class CardComponent implements OnInit, OnDestroy {
         return params.id;
       }),
       mergeMap((id) => {
-        const commonResponse = this.itemService.getResponse('js');
-        const statisticsResponse = this.itemService.getStatistics(id);
+        const commonResponse: Observable<ISearchResponse> = this.itemService.getResponse('js');
+        const statisticsResponse: Observable<ISearchResponse> = this.itemService.getStatistics(id);
         return forkJoin([commonResponse, statisticsResponse]);
       })
     ).subscribe((data) => {
