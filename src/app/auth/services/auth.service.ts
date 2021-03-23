@@ -1,21 +1,27 @@
-import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../models/user.model';
 
+@Injectable()
 export class AuthService {
 
-    private isAuthenticated: boolean = (window.localStorage.getItem('user') !== null) ? true : false;
+    isLoginSubject = new BehaviorSubject<boolean>(this.hasUser());
 
-    public login(user: User): void {
-        window.localStorage.setItem('user', JSON.stringify(user));
-        this.isAuthenticated = true;
+    isLoggedIn() : Observable<boolean> {
+        return this.isLoginSubject.asObservable();
     }
 
-    public logout(): void {
-        this.isAuthenticated = false;
-        window.localStorage.clear();
+    login() : void {
+        this.isLoginSubject.next(true);
     }
 
-    public isLoggedIn(): Observable<boolean> {
-        return of(this.isAuthenticated);
-    }
+    logout() : void {
+        localStorage.removeItem('user');
+        this.isLoginSubject.next(false);
+      }
+
+    private hasUser() : boolean {
+        return (window.localStorage.getItem('user') !== null) ? true : false;
+      }
+
 }

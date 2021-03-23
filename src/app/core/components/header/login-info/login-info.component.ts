@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -8,32 +7,12 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './login-info.component.html',
   styleUrls: ['./login-info.component.scss']
 })
-export class LoginInfoComponent implements OnInit, OnDestroy {
+export class LoginInfoComponent {
 
-  public isLoggedIn: boolean = false;
-  public sub: Subscription;
+  public isLoggedIn: Observable<boolean>;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
-
-  public ngOnInit(): void {
-    this.sub = this.authService.isLoggedIn().subscribe(
-      data => this.isLoggedIn = data
-    );
-  }
-
-  public onLogout(): void {
-    this.authService.logout();
-    this.isLoggedIn = false;
-    this.router.navigate(['/login']);
-  }
-
-  public ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
+  constructor(private authService: AuthService) { 
+    this.isLoggedIn = authService.isLoggedIn();
   }
 
 }

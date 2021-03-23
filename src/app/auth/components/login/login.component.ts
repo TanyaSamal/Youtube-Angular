@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
     let user: User = Object.assign({});
     user.email = this.email.value;
     user.password = this.password.value;
-    this.authService.login(user);
+    window.localStorage.setItem('user', JSON.stringify(user));
+    this.authService.login();
     this.router.navigate(['/ok']);
   }
 
